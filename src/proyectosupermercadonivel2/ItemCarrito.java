@@ -1,12 +1,13 @@
-package proyectosupermercado;
+package proyectosupermercadonivel2;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
-import proyectosupermercado.Producto;
+import proyectosupermercadonivel2.*;
 
 public class ItemCarrito {
 	private int idItem;

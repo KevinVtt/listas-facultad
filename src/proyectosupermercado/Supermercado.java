@@ -3,6 +3,7 @@ package proyectosupermercado;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.DoubleStream;
 
 import proyectosupermercado.Producto;
 
@@ -83,6 +84,16 @@ public class Supermercado {
 		
 	}
 
+	
+	public float calcularSubtotal() {
+		
+		DoubleStream total = this.gondola.stream()
+									.mapToDouble(n -> n.getPrecio());
+		
+		return (float) total.sum();
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Supermercado [gondola=" + gondola + "]";

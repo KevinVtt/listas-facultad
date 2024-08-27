@@ -1,4 +1,4 @@
-package proyectosupermercado;
+package proyectosupermercadonivel2;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
-
 import proyectosupermercadonivel2.*;
 
 
@@ -20,12 +19,14 @@ public class Carrito {
 	private LocalDate fecha;
 	private LocalTime hora;
 	private List<ItemCarrito> listItem;
+	private Cliente cliente;
 	private static int idFinal;
 	
-	public Carrito(LocalDate fecha, LocalTime hora) {
+	public Carrito(LocalDate fecha, LocalTime hora,Cliente cliente) {
 		this.idCarrito = ++idFinal;
 		this.fecha = fecha;
 		this.hora = hora;
+		this.cliente = cliente;
 		this.listItem = new ArrayList<>();
 	}
 
@@ -53,6 +54,14 @@ public class Carrito {
 		this.hora = hora;
 	}
 
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 	public List<ItemCarrito> getListItem() {
 		return listItem;
@@ -88,6 +97,7 @@ public class Carrito {
 		
 	}
 	
+
 	public boolean eliminarItem(Producto producto, int cantidad) throws Exception {
 		
 		AtomicBoolean bandera = new AtomicBoolean(false);

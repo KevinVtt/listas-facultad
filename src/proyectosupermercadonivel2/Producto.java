@@ -1,0 +1,49 @@
+package proyectosupermercadonivel2;
+
+
+public class Producto {
+	
+	private int idProducto;
+	private String producto;
+	private float precio;
+	private static int idFinal;
+	
+	public Producto(String producto, float precio) {
+		this.idProducto = ++idFinal;
+		this.producto = producto;
+		this.precio = precio;
+	}
+
+	public int getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public String getProducto() {
+		return producto;
+	}
+
+	public void setProducto(String producto) {
+		this.producto = producto;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", producto=" + producto + ", precio=" + precio + "]";
+	}
+	
+	
+	
+	
+}

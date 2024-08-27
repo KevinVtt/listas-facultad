@@ -38,15 +38,23 @@ public class TestSupermercado {
 			supermercado.getGondola().forEach(System.out::println);
 			System.out.println("---------------------------------");
 			
+			
+			System.out.println("Calcular subtotal: ");
+			System.out.println(supermercado.calcularSubtotal());
+			System.out.println("---------------------------------");
+			
 			System.out.println();
 			System.out.println();
 			
 			// Carrito test
 			
 			Carrito carrito = new Carrito(LocalDate.of(2020, 1, 1),LocalTime.of(1, 1));
+			
 			System.out.println("Agregar item carrito en carrito");
 			carrito.agregarItem(new Producto("Manaos",1000f), 3);
 			carrito.agregarItem(new Producto("Coca cola", 3000f), 1);
+			carrito.agregarItem(new Producto("Pepsi", 1500f), 2);
+			carrito.agregarItem(new Producto("Fanta", 2500f), 3);
 			carrito.getListItem().forEach(System.out::println);
 			System.out.println("---------------------------------");
 			
@@ -56,6 +64,9 @@ public class TestSupermercado {
 			carrito.getListItem().forEach(System.out::println);
 			System.out.println("---------------------------------");
 			
+			System.out.println("Calcular total: ");
+			System.out.println(carrito.calcularTotal());
+			System.out.println("---------------------------------");
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
