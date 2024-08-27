@@ -59,42 +59,61 @@ public class Carrito {
 	public void setListItem(List<ItemCarrito> listItem) {
 		this.listItem = listItem;
 	}
-
 	
-	public boolean agregarItem(Producto producto, int cantidad) throws Exception {
+	public boolean agregarItem(Producto producto, int cantidad) {
 		
 		AtomicBoolean bandera = new AtomicBoolean(false);
 		
-		this.listItem.forEach(n ->{
-			
-			try {
-				if(n.traerProducto(producto.getIdProducto()) != null) {
-						
-						bandera.set(true);
-				}
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		});
+		this.listItem.stream()
+					.forEach(p -> {
+						if(p.getProducto().getIdProducto() == producto.getIdProducto()) {
+							bandera.set(true);
+							p.setCantidad(cantidad + 1);
+						}
+					});
 		
-		ItemCarrito it = new ItemCarrito(cantidad);
-		it.agregarProducto(producto.getProducto(), producto.getPrecio());
-		if(bandera.get()) {
-			it.setCantidad(++cantidad);
-			this.listItem.add(it);
 		
+		ItemCarrito itemCa = new ItemCarrito(cantidad,producto);
+		
+		if(!bandera.get()) {
+			
+			this.listItem.add(itemCa);
+			return bandera.get();
+			
 		}else {
-			this.listItem.add(it);
+			return bandera.get();
 		}
-		
-//		this.listItem.add(new Ite)
-		return bandera.get();
 		
 	}
 	
+	public boolean eliminarItem(Producto producto, int cantidad) throws Exception {
+		
+		AtomicBoolean bandera = new AtomicBoolean(false);
+		
+		ItemCarrito itemCarro = this.listItem.stream()
+						.filter(it -> it.getProducto().getProducto().equalsIgnoreCase(producto.getProducto()))
+						.findAny().orElseThrow( () -> new Exception("El producto no existe"));
+		
+		
+		this.listItem.forEach(it -> {
+			
+			if(it.getCantidad() == cantidad) {
+				bandera.set(true);
+			}else if(it.getCantidad() > cantidad) {
+				bandera.set(false);
+			}
+		});
+		
+		if(bandera.get()) {
+			this.listItem.remove(itemCarro);
+			return bandera.get();
+		}else {
+			itemCarro.setCantidad(cantidad-1);
+			return bandera.get();
+		}
+		
+		
+	}
 
 	@Override
 	public String toString() {
