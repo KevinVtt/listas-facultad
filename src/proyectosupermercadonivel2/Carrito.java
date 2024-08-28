@@ -15,10 +15,11 @@ import proyectosupermercadonivel2.*;
 
 
 public class Carrito {
+	
 	private int idCarrito;
 	private LocalDate fecha;
 	private LocalTime hora;
-	private List<ItemCarrito> listItem;
+	private List<ItemCarrito> listItem = new ArrayList<>();
 	private Cliente cliente;
 	private static int idFinal;
 	
@@ -27,7 +28,6 @@ public class Carrito {
 		this.fecha = fecha;
 		this.hora = hora;
 		this.cliente = cliente;
-		this.listItem = new ArrayList<>();
 	}
 
 	public int getIdCarrito() {
@@ -138,8 +138,11 @@ public class Carrito {
 	@Override
 	public String toString() {
 		return "Carrito [idCarrito=" + idCarrito + ", fecha=" + fecha + ", hora=" + hora + ", listItem=" + listItem
-				+ "]";
+				+ ", cliente=" + cliente + "]";
 	}
+
+	
+	
 	
 	
 	
